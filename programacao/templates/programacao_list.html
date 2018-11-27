@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Programação</h1>
+<a href="{% url 'programacao_create' %}">Nova atividade</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Horário</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for atividade in programacao %}
+        <tr>
+            <th>{{atividade.id}}</th>
+            <td>{{atividade.nome}}</td>
+            <td>{{atividade.descricao}}</td>
+            <td>{{atividade.horario}}</td>
+            <td>
+                <a href="{% url 'programacao_detail' atividade.id %}">Ver</a>
+                <a href="{% url 'programacao_edit' atividade.id %}">Editar</a>
+                <a href="{% url 'programacao_delete' atividade.id %}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
