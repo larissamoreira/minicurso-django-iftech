@@ -28,10 +28,10 @@ def programacao_create(request):
 def programacao_edit(request, atividade_id):
     atividade = get_object_or_404(Atividade, pk=atividade_id)
     if request.method == 'POST':
-        form = AtividadeForm(request.POST)
+        form = AtividadeForm(request.POST, instance=atividade)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('programacao_list'))
+            return HttpResponseRedirect(reverse('programacao_detail', args=[atividade_id]))
     else:
         form = AtividadeForm(instance=atividade)
 
